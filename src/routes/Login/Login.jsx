@@ -19,7 +19,7 @@ const Login = () => {
                 console.log('Enter password!');
             }
             if (loginEmail&&loginPassword) {
-                await logInWithEmailAndPassword(loginEmail, loginPassword).then(() => {navigate("/home")});
+                await logInWithEmailAndPassword(loginEmail, loginPassword).then(() => {navigate("/Dashboard")});
             }
         } catch (error) {
             console.log(error);
@@ -34,7 +34,7 @@ const Login = () => {
             console.log('Enter password!');
         }
         if (registerEmail&&registerPassword) {
-            await registerWithEmailAndPassword(registerEmail, registerPassword).then(() => {navigate("/home")});
+            await registerWithEmailAndPassword(registerEmail, registerPassword).then(() => {navigate("/Dome")});
         }
     };
 
