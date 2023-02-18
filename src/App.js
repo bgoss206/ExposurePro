@@ -6,6 +6,12 @@ import ToDoListHome from "./routes/ToDoListHome/to-do-list-home.component";
 
 import "./App.css";
 import Dashboard from "./routes/Dashboard/Dashboard";
+import BrowseProducts from "./routes/Dashboard/BrowseProducts";
+import ReportProducts from "./routes/Dashboard/ReportProducts";
+import CreateEntry from "./routes/Dashboard/CreateEntry";
+import PersonalDetails from "./routes/Dashboard/PersonalDetails";
+import ViewEntries from "./routes/Dashboard/ViewEntries"
+import Settings from "./routes/Dashboard/Settings"
 
 function App() {
   return (
@@ -16,6 +22,12 @@ function App() {
             <Route path="/" element={<Login />} />
             <Route exact path="/home" element={<ToDoListHome />} />
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/BrowseProducts" element={<BrowseProducts />} />
+            <Route path="/ReportProducts" element={<ReportProducts />} />
+            <Route path="/CreateEntry" element={<CreateEntry />} />
+            <Route path="/PersonalDetails" element={<PersonalDetails />} />
+            <Route path="/ViewEntries" element={<ViewEntries />} />
+            <Route path="/Settings" element={<Settings />} />
           </Routes>
         </BrowserRouter>
       </div>

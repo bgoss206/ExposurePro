@@ -18,15 +18,15 @@ function SideMenu() {
   return (
     <Sidebar>
       <Menu>
-        <MenuItem component={<Link to="/Overview"/>}>Overview</MenuItem>
+        <MenuItem component={<Link to="/Dashboard"/>}>Dashboard</MenuItem>
         <SubMenu label="Product Database">
-          <MenuItem component={<Link to="/Browse-Products"/>}> Browse Products</MenuItem>
-          <MenuItem component={<Link to="/Report-New-Products"/>}> Report New Products</MenuItem>
-          <MenuItem component={<Link to="/Create-New-Entry"/>}> Create New Entry </MenuItem>
+          <MenuItem component={<Link to="/BrowseProducts"/>}> Browse Products</MenuItem>
+          <MenuItem component={<Link to="/ReportProducts"/>}> Report Products</MenuItem>
+          <MenuItem component={<Link to="/CreateEntry"/>}> Create Entry </MenuItem>
         </SubMenu>
         <SubMenu label="Profile">
-          <MenuItem component={<Link to="/Personal-Details"/>}> Personal Details</MenuItem>
-          <MenuItem component={<Link to="/View-Entries"/>}> View Entries </MenuItem>
+          <MenuItem component={<Link to="/PersonalDetails"/>}> Personal Details</MenuItem>
+          <MenuItem component={<Link to="/ViewEntries"/>}> View Entries </MenuItem>
         </SubMenu>
         <MenuItem component={<Link to="/Settings"/>}> Settings </MenuItem>
         <MenuItem component={<Link to="/"/>}> Signout </MenuItem>
