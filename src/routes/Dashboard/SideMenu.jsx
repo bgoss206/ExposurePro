@@ -1,5 +1,6 @@
 import React from "react";
 import { Sidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
+import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 
 function SideMenu() {
   return (
@@ -11,6 +12,7 @@ function SideMenu() {
         </SubMenu>
         <MenuItem> Documentation </MenuItem>
         <MenuItem> Calendar </MenuItem>
+        <KeyboardArrowRightIcon />
       </Menu>
     </Sidebar>
   );
