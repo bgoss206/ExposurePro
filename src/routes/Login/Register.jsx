@@ -7,12 +7,18 @@ function Register() {
   const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassword, setRegisterPassword] = React.useState("");
   const [passwordShown, setPasswordShown] = useState(false);
+  const [checked, setChecked] = useState(false);
 
   // Password toggle handler
   const togglePassword = () => {
     // When the handler is invoked
     // inverse the boolean state of passwordShown
     setPasswordShown(!passwordShown);
+  };
+
+  const handleCheck = () => {
+    setChecked(!checked);
+    togglePassword();
   };
 
   const navigate = useNavigate();
@@ -27,7 +33,7 @@ function Register() {
     if (registerEmail && registerPassword) {
       await registerWithEmailAndPassword(registerEmail, registerPassword).then(
         () => {
-          navigate("/home");
+          navigate("/createProfile");
         }
       );
     }
@@ -39,9 +45,7 @@ function Register() {
 
       <div className="login__container">
         <div>
-        <label className="font-bold text-cgrey">
-            E-mail Address:{" "}
-          </label>
+          <label className="font-bold text-cgrey">E-mail Address: </label>
           <input
             type="text"
             className="mb-2"
@@ -52,9 +56,7 @@ function Register() {
           />
         </div>
         <div>
-          <label className="font-bold text-cgrey">
-            Password:{" "}
-          </label>
+          <label className="font-bold text-cgrey">Password: </label>
           <input
             type={passwordShown ? "text" : "password"}
             className="mb-2"
@@ -63,6 +65,10 @@ function Register() {
             placeholder="password"
             required
           />
+          <label>
+            Show Password?
+            <input type="checkbox" value={checked} onChange={handleCheck} />
+          </label>
         </div>
         <button className="text-cgreen" onClick={handleRegister}>
           Register

@@ -9,8 +9,6 @@ function Init() {
   const cleanEntries = (entries) => {
     for (let i = 0; i < entries.length; i++) {
       let currentEntry = entries[i];
-      let currentId = currentEntry.ProductId;
-      delete currentEntry["PropertyId"];
       delete currentEntry[""];
       if (currentEntry.Variant === "") {
         currentEntry.Variant = "default";
@@ -32,6 +30,8 @@ function Init() {
         skipEmptyLines: true,
         complete: function (results) {
           let entries = cleanEntries(results.data);
+
+          // kept at 1000 entries to reduce # of writes in firebase storage
           setDataInBatches(entries.slice(0, 1000), 500);
         },
       });

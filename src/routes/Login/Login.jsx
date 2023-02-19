@@ -20,7 +20,7 @@ const Login = () => {
       }
       if (loginEmail && loginPassword) {
         await logInWithEmailAndPassword(loginEmail, loginPassword).then(() => {
-          navigate("/home");
+          navigate("/Dashboard");
         });
       }
     } catch (error) {
@@ -31,13 +31,11 @@ const Login = () => {
   return (
     <div>
       <div className="h-screen bg-cblue">
-      <h1 className="font-bold text-6xl pt-32 mb-10 text-cgreen">Login</h1>
+        <h1 className="font-bold text-6xl pt-32 mb-10 text-cgreen">Login</h1>
 
         <div className="login__container">
           <div>
-          <label className="font-bold text-cgrey">
-              E-mail Address:{" "}
-            </label>
+            <label className="font-bold text-cgrey">E-mail Address: </label>
             <input
               type="text"
               className="mb-2"
@@ -48,9 +46,7 @@ const Login = () => {
             />
           </div>
           <div>
-          <label className="font-bold text-cgrey">
-              Password:{" "}
-            </label>
+            <label className="font-bold text-cgrey">Password: </label>
             <input
               type="password"
               className="mb-2"

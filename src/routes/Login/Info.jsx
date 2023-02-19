@@ -7,7 +7,7 @@ import {
 
 import { Link } from "react-router-dom";
 
-const Info = () => {
+const CreateProfile = () => {
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
 
@@ -58,7 +58,7 @@ const Info = () => {
             />
           </div>
           <button className="login__btn" onClick={handleSignIn}>
-            Login
+            Create Profile
           </button>
 
           <h3 className="text-green">
@@ -71,4 +71,4 @@ const Info = () => {
   );
 };
 
-export default Login;
+export default CreateProfile;
