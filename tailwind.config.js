@@ -8,7 +8,8 @@ module.exports = {
       colors: {
         'cblue': '#43547a',
         'cgreen': '#71e39f',
-        'cblack': '#0a0a0a'
+        'cblack': '#0a0a0a',
+        'cwhite': '#ffffff',
       }
     },
     plugins: [],

@@ -53,18 +53,18 @@ const Login = () => {
             </label>
             <input
               type="password"
-              className="mb-2"
+              className="mb-5"
               value={loginPassword}
               onChange={(e) => setLoginPassword(e.target.value)}
               placeholder="Password"
               required
             />
           </div>
-          <button className="text-cgreen" onClick={handleSignIn}>
+          <button className="text-cblue rounded bg-cwhite shadow px-1 mb-1" onClick={handleSignIn}>
             Login
           </button>
 
-          <h3 className="text-cgreen">
+          <h3 className= "text-cgreen px-1">
             New Here? {<Link to="/Register"> Register Here Now! </Link>}
           </h3>
         </div>
