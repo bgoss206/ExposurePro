@@ -10,8 +10,9 @@ import BrowseProducts from "./routes/Dashboard/BrowseProducts";
 import ReportProducts from "./routes/Dashboard/ReportProducts";
 import CreateEntry from "./routes/Dashboard/CreateEntry";
 import PersonalDetails from "./routes/Dashboard/PersonalDetails";
-import ViewEntries from "./routes/Dashboard/ViewEntries"
-import Settings from "./routes/Dashboard/Settings"
+import ViewEntries from "./routes/Dashboard/ViewEntries";
+import Settings from "./routes/Dashboard/Settings";
+import Init from "./routes/Dashboard/Init";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             <Route path="/" element={<Login />} />
             <Route exact path="/home" element={<ToDoListHome />} />
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/init" element={<Init />} />
             <Route path="/BrowseProducts" element={<BrowseProducts />} />
             <Route path="/ReportProducts" element={<ReportProducts />} />
             <Route path="/CreateEntry" element={<CreateEntry />} />

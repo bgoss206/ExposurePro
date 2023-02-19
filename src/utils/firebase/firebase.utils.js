@@ -1,27 +1,28 @@
 import { initializeApp } from "firebase/app";
 
 import {
-    getAuth,
-    signInWithEmailAndPassword,
-    signOut,
-    onAuthStateChanged,
-    createUserWithEmailAndPassword
+  getAuth,
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged,
+  createUserWithEmailAndPassword,
 } from "firebase/auth";
 import {
-    getFirestore,
-    getDoc,
-    doc,
-    updateDoc,
-    setDoc,
+  getFirestore,
+  getDoc,
+  doc,
+  updateDoc,
+  setDoc,
+  writeBatch,
 } from "firebase/firestore";
 
 const firebaseConfig = {
-    apiKey: process.env.REACT_APP_API_KEY,
-    authDomain: process.env.REACT_APP_AUTH_DOMAIN,
-    projectId: process.env.REACT_APP_PROJECT_ID,
-    storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
-    messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
-    appId: process.env.REACT_APP_APP_ID,
+  apiKey: process.env.REACT_APP_API_KEY,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_APP_ID,
 };
 
 // Initialize Firebase
@@ -30,44 +31,73 @@ export const auth = getAuth(app);
 export const db = getFirestore(app);
 
 export const logInWithEmailAndPassword = async (email, password) => {
-    await signInWithEmailAndPassword(auth, email, password);
+  await signInWithEmailAndPassword(auth, email, password);
 };
 
 export const registerWithEmailAndPassword = async (email, password) => {
-    const res = await createUserWithEmailAndPassword(auth, email, password);
-    const user = res.user;
+  const res = await createUserWithEmailAndPassword(auth, email, password);
+  const user = res.user;
 
-    await setDoc(doc(db, "to-do", email), {
-        items: [],
-    });
+  await setDoc(doc(db, "to-do", email), {
+    items: [],
+  });
 };
 
 export const getToDoList = async (email) => {
-    try {
-        const docSnap = await getDoc(doc(db, "to-do", email));
+  try {
+    const docSnap = await getDoc(doc(db, "to-do", email));
 
-        return docSnap.data().items;
-    } catch (error) {
-        console.error(error);
-    }
+    return docSnap.data().items;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const setDataInBatches = (dataArray, batchSize) => {
+  const batches = []; // Array to hold the batches
+  const batchCount = Math.ceil(dataArray.length / batchSize); // Calculate the number of batches
+
+  // Split the data into batches
+  for (let i = 0; i < batchCount; i++) {
+    const start = i * batchSize;
+    const end = start + batchSize;
+    batches.push(dataArray.slice(start, end));
+  }
+
+  // Write the batches to Firestore using batched writes
+  batches.forEach((batch) => {
+    const batchWrite = writeBatch(db);
+    batch.forEach((data) => {
+      const productRef = doc(db, "cosmetics", data.ProductId);
+      batchWrite.set(productRef, data);
+    });
+    batchWrite
+      .commit()
+      .then(() => {
+        console.log("Batch write complete.");
+      })
+      .catch((error) => {
+        console.log("Batch write failed:", error);
+      });
+  });
 };
 
 export const addToDoItem = async (currentItems, email, newItem) => {
-    await updateDoc(doc(db, "to-do", email), {
-        items: [...currentItems, newItem],
-    });
+  await updateDoc(doc(db, "to-do", email), {
+    items: [...currentItems, newItem],
+  });
 };
 
 export const deleteToDoItem = async (currentItems, email, deleteItem) => {
-    var newItems = currentItems;
-    
-    const index = newItems.indexOf(deleteItem);
+  var newItems = currentItems;
 
-    if (index > -1) {
-        newItems.splice(index, 1);
-    }
+  const index = newItems.indexOf(deleteItem);
 
-    await updateDoc(doc(db, "to-do", email), {
-        items: [...newItems],
-    });
+  if (index > -1) {
+    newItems.splice(index, 1);
+  }
+
+  await updateDoc(doc(db, "to-do", email), {
+    items: [...newItems],
+  });
 };

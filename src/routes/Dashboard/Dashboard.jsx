@@ -4,8 +4,10 @@ import SideMenu from "./SideMenu";
 function Dashboard() {
   return (
     <div>
-      <SideMenu />
-      This is a dashboard
+      <div>
+        <SideMenu />
+      </div>
+      <div>This is a dashboard</div>
     </div>
   );
 }
