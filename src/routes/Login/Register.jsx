@@ -5,13 +5,14 @@ import { registerWithEmailAndPassword } from "../../utils/firebase/firebase.util
 
 function Register() {
   const [registerEmail, setRegisterEmail] = useState("");
-  const [registerPassword, setRegisterPassword] = React.useState({
-    password: "",
-    showPassword: false,
-  });
+  const [registerPassword, setRegisterPassword] = React.useState("");
+  const [passwordShown, setPasswordShown] = useState(false);
 
-  const handleClickShowPassword = () => {
-    setValues({ ...values, showPassword: !values.showPassword });
+  // Password toggle handler
+  const togglePassword = () => {
+    // When the handler is invoked
+    // inverse the boolean state of passwordShown
+    setPasswordShown(!passwordShown);
   };
 
   const navigate = useNavigate();
@@ -55,11 +56,11 @@ function Register() {
             Password:{" "}
           </label>
           <input
-            type="text"
+            type={passwordShown ? "text" : "password"}
             className="login__textBox"
             value={registerPassword}
-            onChange={(e) => setRegisterPassword(e.target.value)}
-            placeholder="Password"
+            onChange={(e) => setRegisterPassword(e.target.value.toLowerCase())}
+            placeholder="password"
             required
           />
         </div>

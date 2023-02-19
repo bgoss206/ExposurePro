@@ -38,14 +38,14 @@ export const registerWithEmailAndPassword = async (email, password) => {
   const res = await createUserWithEmailAndPassword(auth, email, password);
   const user = res.user;
 
-  await setDoc(doc(db, "to-do", email), {
+  await setDoc(doc(db, "Profile", email), {
     items: [],
   });
 };
 
 export const getToDoList = async (email) => {
   try {
-    const docSnap = await getDoc(doc(db, "to-do", email));
+    const docSnap = await getDoc(doc(db, "Profile", email));
 
     return docSnap.data().items;
   } catch (error) {
@@ -82,22 +82,48 @@ export const setDataInBatches = (dataArray, batchSize) => {
   });
 };
 
-export const addToDoItem = async (currentItems, email, newItem) => {
-  await updateDoc(doc(db, "to-do", email), {
-    items: [...currentItems, newItem],
-  });
+// export const addToDoItem = async (currentItems, email, newItem) => {
+//   await updateDoc(doc(db, "Profile", email), {
+//     items: [...currentItems, newItem],
+//   });
+// };
+
+export const createUserProfile = (
+  email,
+  name,
+  dob,
+  joinDate,
+  exposedItemsList
+) => {
+  const userProfileRef = doc(db, "userProfiles", email); // Create reference to user profile document
+
+  const userProfileData = {
+    // Create object with user profile data
+    Name: name,
+    DOB: dob,
+    JoinDate: joinDate,
+    exposedItemsList: exposedItemsList,
+  };
+
+  setDoc(userProfileRef, userProfileData) // Set user profile document in Firestore
+    .then(() => {
+      console.log("User profile created successfully.");
+    })
+    .catch((error) => {
+      console.log("Error creating user profile:", error);
+    });
 };
 
-export const deleteToDoItem = async (currentItems, email, deleteItem) => {
-  var newItems = currentItems;
+// export const deleteToDoItem = async (currentItems, email, deleteItem) => {
+//   var newItems = currentItems;
 
-  const index = newItems.indexOf(deleteItem);
+//   const index = newItems.indexOf(deleteItem);
 
-  if (index > -1) {
-    newItems.splice(index, 1);
-  }
+//   if (index > -1) {
+//     newItems.splice(index, 1);
+//   }
 
-  await updateDoc(doc(db, "to-do", email), {
-    items: [...newItems],
-  });
-};
+//   await updateDoc(doc(db, "Profile", email), {
+//     items: [...newItems],
+//   });
+// };

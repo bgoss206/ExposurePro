@@ -23,8 +23,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Login />} />
             <Route path="/Register" element={<Register />} />
-            <Route exact path="/home" element={<ToDoListHome />} />
-            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/home" element={<Dashboard />} />
             <Route path="/init" element={<Init />} />
             <Route path="/BrowseProducts" element={<BrowseProducts />} />
             <Route path="/ReportProducts" element={<ReportProducts />} />

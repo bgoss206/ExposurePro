@@ -1,42 +1,39 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { logInWithEmailAndPassword } from "../../utils/firebase/firebase.utils";
+import {
+  logInWithEmailAndPassword,
+  registerWithEmailAndPassword,
+} from "../../utils/firebase/firebase.utils";
 
 import { Link } from "react-router-dom";
 
-const Login = () => {
+const Info = () => {
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
 
   const navigate = useNavigate();
 
-  const handleSignIn = async () => {
-    try {
-      if (!loginEmail) {
-        console.log("Enter email address!");
-      }
-      if (!loginPassword) {
-        console.log("Enter password!");
-      }
-      if (loginEmail && loginPassword) {
-        await logInWithEmailAndPassword(loginEmail, loginPassword).then(() => {
-          navigate("/home");
-        });
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   return (
     <div>
-      <div className="login">
-        <h1>Login</h1>
+      <div>
+        <h1>Welcome to Exposure Pro!</h1>
 
-        <div className="login__container">
+        <h4>
+          We are happy you're taking the first step in cataloging your exposure
+          to various products known to cause harm to our core biologies.
+        </h4>
+
+        <br />
+
+        <h2>
+          Please take a moment to fill out the following information about
+          yourself to create a user profile:
+        </h2>
+
+        <div>
           <div>
             <label style={{ textAlign: "left", fontWeight: "bold" }}>
-              E-mail Address:{" "}
+              E-mail Address:
             </label>
             <input
               type="text"
@@ -65,7 +62,8 @@ const Login = () => {
           </button>
 
           <h3 className="text-green">
-            New Here? {<Link to="/Register"> Register Here Now! </Link>}
+            If you'd just like to have a look around,
+            {<Link to="/Home"> Click Here </Link>}
           </h3>
         </div>
       </div>

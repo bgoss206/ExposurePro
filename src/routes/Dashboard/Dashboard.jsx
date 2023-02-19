@@ -1,5 +1,5 @@
 import React from "react";
-import SideMenu from "./SideMenu";
+import SideMenu from "../SideMenu/SideMenu";
 
 function Dashboard() {
   return (
