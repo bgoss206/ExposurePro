@@ -34,17 +34,17 @@ function Register() {
   };
 
   return (
-    <div className="register">
-      <h1>Register</h1>
+    <div className="h-screen bg-cblue">
+      <h1 className="font-bold text-6xl pt-32 mb-10 text-cgreen">Register</h1>
 
       <div className="login__container">
         <div>
-          <label style={{ textAlign: "left", fontWeight: "bold" }}>
+        <label className="font-bold text-cgrey">
             E-mail Address:{" "}
           </label>
           <input
             type="text"
-            className="login__textBox"
+            className="mb-2"
             value={registerEmail}
             onChange={(e) => setRegisterEmail(e.target.value.toLowerCase())}
             placeholder="E-mail Address"
@@ -52,19 +52,19 @@ function Register() {
           />
         </div>
         <div>
-          <label style={{ textAlign: "left", fontWeight: "bold" }}>
+          <label className="font-bold text-cgrey">
             Password:{" "}
           </label>
           <input
             type={passwordShown ? "text" : "password"}
-            className="login__textBox"
+            className="mb-2"
             value={registerPassword}
             onChange={(e) => setRegisterPassword(e.target.value.toLowerCase())}
             placeholder="password"
             required
           />
         </div>
-        <button className="login__btn" onClick={handleRegister}>
+        <button className="text-cgreen" onClick={handleRegister}>
           Register
         </button>
       </div>
