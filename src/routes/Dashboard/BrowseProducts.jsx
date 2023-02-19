@@ -1,12 +1,21 @@
 import React from "react";
 import SideMenu from "../SideMenu/SideMenu";
+import SearchBar from "./SearchBar";
+
 
 function BrowseProducts() {
   return (
     <div>
+    <div>
       <SideMenu />
-      This is the Browse Product page
+      <SearchBar/>
     </div>
+    <div className="inline-block">
+    <SearchBar/>
+      This is the Browse Product page
+      </div>
+      </div>
+
   );
 }
 

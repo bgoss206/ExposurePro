@@ -30,8 +30,8 @@ function SideMenu() {
   };
 
   return (
-    <Sidebar>
-      <Menu>
+    <Sidebar className="h-screen inline-block">
+      <Menu >
         <MenuItem component={<Link to="/Dashboard" />}>
           {" "}
           {collapsed ? <GridViewIcon /> : "Dashboard"}
