@@ -30,17 +30,17 @@ const Login = () => {
 
   return (
     <div>
-      <div className="login">
-        <h1>Login</h1>
+      <div className="h-screen bg-cblue">
+      <h1 className="font-bold text-6xl pt-32 mb-10 text-cgreen">Login</h1>
 
         <div className="login__container">
           <div>
-            <label style={{ textAlign: "left", fontWeight: "bold" }}>
+          <label className="font-bold text-cgrey">
               E-mail Address:{" "}
             </label>
             <input
               type="text"
-              className="login__textBox"
+              className="mb-2"
               value={loginEmail}
               onChange={(e) => setLoginEmail(e.target.value.toLowerCase())}
               placeholder="E-mail Address"
@@ -48,23 +48,23 @@ const Login = () => {
             />
           </div>
           <div>
-            <label style={{ textAlign: "left", fontWeight: "bold" }}>
+          <label className="font-bold text-cgrey">
               Password:{" "}
             </label>
             <input
               type="password"
-              className="login__textBox"
+              className="mb-2"
               value={loginPassword}
               onChange={(e) => setLoginPassword(e.target.value)}
               placeholder="Password"
               required
             />
           </div>
-          <button className="login__btn" onClick={handleSignIn}>
+          <button className="text-cgreen" onClick={handleSignIn}>
             Login
           </button>
 
-          <h3 className="text-green">
+          <h3 className="text-cgreen">
             New Here? {<Link to="/Register"> Register Here Now! </Link>}
           </h3>
         </div>

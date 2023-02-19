@@ -6,9 +6,9 @@ module.exports = {
     theme: {
       extend: {},
       colors: {
-        'blue': '#002142',
-        'green': '#5d8f76',
-        'peach': '#FFE5B4'
+        'cblue': '#43547a',
+        'cgreen': '#71e39f',
+        'cblack': '#0a0a0a'
       }
     },
     plugins: [],
