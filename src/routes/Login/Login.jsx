@@ -5,11 +5,11 @@ import {
   registerWithEmailAndPassword,
 } from "../../utils/firebase/firebase.utils";
 
+import { Link } from "react-router-dom";
+
 const Login = () => {
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
-  const [registerEmail, setRegisterEmail] = useState("");
-  const [registerPassword, setRegisterPassword] = useState("");
 
   const navigate = useNavigate();
 
@@ -28,22 +28,6 @@ const Login = () => {
       }
     } catch (error) {
       console.log(error);
-    }
-  };
-
-  const handleRegister = async () => {
-    if (!registerEmail) {
-      console.log("Enter email address!");
-    }
-    if (!registerPassword) {
-      console.log("Enter password!");
-    }
-    if (registerEmail && registerPassword) {
-      await registerWithEmailAndPassword(registerEmail, registerPassword).then(
-        () => {
-          navigate("/home");
-        }
-      );
     }
   };
 
@@ -82,6 +66,10 @@ const Login = () => {
           <button className="login__btn" onClick={handleSignIn}>
             Login
           </button>
+
+          <h3 className="text-green">
+            New Here? {<Link to="/Register"> Register Here Now! </Link>}
+          </h3>
         </div>
       </div>
     </div>

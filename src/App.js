@@ -2,6 +2,7 @@ import { React } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Login from "./routes/Login/Login";
+import Register from "./routes/Login/Register";
 import ToDoListHome from "./routes/ToDoListHome/to-do-list-home.component";
 
 import "./App.css";
@@ -21,6 +22,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Login />} />
+            <Route path="/Register" element={<Register />} />
             <Route exact path="/home" element={<ToDoListHome />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/init" element={<Init />} />

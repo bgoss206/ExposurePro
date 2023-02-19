@@ -1,6 +1,37 @@
 import React from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { registerWithEmailAndPassword } from "../../utils/firebase/firebase.utils";
 
 function Register() {
+  const [registerEmail, setRegisterEmail] = useState("");
+  const [registerPassword, setRegisterPassword] = React.useState({
+    password: "",
+    showPassword: false,
+  });
+
+  const handleClickShowPassword = () => {
+    setValues({ ...values, showPassword: !values.showPassword });
+  };
+
+  const navigate = useNavigate();
+
+  const handleRegister = async () => {
+    if (!registerEmail) {
+      console.log("Enter email address!");
+    }
+    if (!registerPassword) {
+      console.log("Enter password!");
+    }
+    if (registerEmail && registerPassword) {
+      await registerWithEmailAndPassword(registerEmail, registerPassword).then(
+        () => {
+          navigate("/home");
+        }
+      );
+    }
+  };
+
   return (
     <div className="register">
       <h1>Register</h1>

@@ -12,7 +12,7 @@ function Init() {
       let currentId = currentEntry.ProductId;
       delete currentEntry["PropertyId"];
       delete currentEntry[""];
-      if (currentEntry.Variant == "") {
+      if (currentEntry.Variant === "") {
         currentEntry.Variant = "default";
       }
       entries[i] = currentEntry;
