@@ -20,6 +20,7 @@ const Login = () => {
       }
       if (loginEmail && loginPassword) {
         await logInWithEmailAndPassword(loginEmail, loginPassword).then(() => {
+          // fetch the data from firebase on whether they have a profile
           navigate("/Dashboard");
         });
       }
@@ -56,11 +57,14 @@ const Login = () => {
               required
             />
           </div>
-          <button className="text-cblue rounded bg-cwhite shadow px-1 mb-1" onClick={handleSignIn}>
+          <button
+            className="text-cblue rounded bg-cwhite shadow px-1 mb-1"
+            onClick={handleSignIn}
+          >
             Login
           </button>
 
-          <h3 className= "text-cgreen px-1">
+          <h3 className="text-cgreen px-1">
             New Here? {<Link to="/Register"> Register Here Now! </Link>}
           </h3>
         </div>

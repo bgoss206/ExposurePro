@@ -6,15 +6,27 @@ import {
 } from "../../utils/firebase/firebase.utils";
 
 import { Link } from "react-router-dom";
+import DatePicker from "react-date-picker";
+import { createUserProfile } from "../../utils/firebase/firebase.utils";
 
 const CreateProfile = () => {
-  const [loginEmail, setLoginEmail] = useState("");
-  const [loginPassword, setLoginPassword] = useState("");
+  const [name, setName] = useState("");
+  const [dob, setDob] = useState(new Date());
+
+  const handleCreateProfile = () => {
+    // Fields needed: email, name, dob, joinDate, exposedItemsList;
+    const today = new Date();
+    let currentDate = `${today.getMonth()}-${today.getDate()}-${today.getYear()}`;
+    createUserProfile(name, dob, currentDate, []);
+  };
+
+  // safeguard: if user is logged in && already has a profile created -- redirect away from this page
+  // could potentially use useEffect without a dependency array
 
   const navigate = useNavigate();
 
   return (
-    <div>
+    <div className="bg-cblue">
       <div>
         <h1>Welcome to Exposure Pro!</h1>
 
@@ -33,37 +45,30 @@ const CreateProfile = () => {
         <div>
           <div>
             <label style={{ textAlign: "left", fontWeight: "bold" }}>
-              E-mail Address:
+              Name:
             </label>
             <input
               type="text"
               className="login__textBox"
-              value={loginEmail}
-              onChange={(e) => setLoginEmail(e.target.value.toLowerCase())}
-              placeholder="E-mail Address"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Name"
               required
             />
           </div>
           <div>
             <label style={{ textAlign: "left", fontWeight: "bold" }}>
-              Password:{" "}
+              Date of Birth:{" "}
             </label>
-            <input
-              type="password"
-              className="login__textBox"
-              value={loginPassword}
-              onChange={(e) => setLoginPassword(e.target.value)}
-              placeholder="Password"
-              required
-            />
+            <DatePicker onChange={setDob} value={dob} />
           </div>
-          <button className="login__btn" onClick={handleSignIn}>
+          <button className="login__btn" onClick={handleCreateProfile}>
             Create Profile
           </button>
 
           <h3 className="text-green">
             If you'd just like to have a look around,
-            {<Link to="/Home"> Click Here </Link>}
+            {<Link to="/Dashboard"> Click Here </Link>}
           </h3>
         </div>
       </div>

@@ -87,15 +87,20 @@ export const setDataInBatches = (dataArray, batchSize) => {
 //     items: [...currentItems, newItem],
 //   });
 // };
-
-export const createUserProfile = (
-  email,
+export const createUserProfile = async (
   name,
   dob,
   joinDate,
   exposedItemsList
 ) => {
-  const userProfileRef = doc(db, "userProfiles", email); // Create reference to user profile document
+  const email = auth.currentUser.email; // Get current user's email address
+  const userProfileRef = doc(db, "Profile", email); // Create reference to user profile document
+
+  const userProfileSnapshot = await getDoc(userProfileRef);
+  if (userProfileSnapshot.exists()) {
+    console.log("User profile already exists.");
+    return;
+  }
 
   const userProfileData = {
     // Create object with user profile data

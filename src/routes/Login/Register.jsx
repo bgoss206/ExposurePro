@@ -70,7 +70,10 @@ function Register() {
             <input type="checkbox" value={checked} onChange={handleCheck} />
           </label>
         </div>
-        <button className="text-cblue rounded bg-cwhite shadow px-1" onClick={handleRegister}>
+        <button
+          className="text-cblue rounded bg-cwhite shadow px-1"
+          onClick={handleRegister}
+        >
           Register
         </button>
       </div>
