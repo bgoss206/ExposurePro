@@ -59,7 +59,7 @@ function Register() {
           <label className="font-bold text-cgrey">Password: </label>
           <input
             type={passwordShown ? "text" : "password"}
-            className="mb-2"
+            className="mb-5"
             value={registerPassword}
             onChange={(e) => setRegisterPassword(e.target.value.toLowerCase())}
             placeholder="password"
@@ -70,7 +70,7 @@ function Register() {
             <input type="checkbox" value={checked} onChange={handleCheck} />
           </label>
         </div>
-        <button className="text-cgreen" onClick={handleRegister}>
+        <button className="text-cblue rounded bg-cwhite shadow px-1" onClick={handleRegister}>
           Register
         </button>
       </div>
